@@ -1,0 +1,6 @@
+URI         ldaps://192.168.56.201
+BASE        dc=test,dc=co,dc=jp
+host        192.168.56.201
+binddn      cn=Manager,dc=test,dc=co,dc=jp
+bindpw      abcde12345
+TLS_REQCERT never

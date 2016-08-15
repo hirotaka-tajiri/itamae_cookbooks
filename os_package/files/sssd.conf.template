@@ -1,0 +1,46 @@
+[domain/default]
+cache_credentials = True
+krb5_realm = #
+id_provider = ldap
+auth_provider = ldap
+chpass_provider = ldap
+sudo_provider = ldap
+autofs_provider = ldap
+ldap_id_use_start_tls = True
+ldap_tls_reqcert = never
+ldap_tls_cacertdir = /etc/openldap/certs
+ldap_uri = ldaps://192.168.56.201
+ldap_search_base = dc=test,dc=co,dc=jp
+ldap_sudo_search_base = ou=Sudoers,dc=test,dc=co,dc=jp
+ldap_network_timeout = 3
+entry_cache_timeout = 600
+enumerate = True
+
+[sssd]
+services = nss, sudo, pam, autofs
+config_file_version = 2
+reconnection_retries = 3
+sbus_timeout = 30
+domains = default
+
+[nss]
+filter_groups = root
+filter_users = root
+reconnection_retries = 3
+entry_cache_timeout = 300
+entry_cache_nowait_percentage = 75
+
+[pam]
+reconnection_retries = 3
+offline_credentials_expiration = 2
+offline_failed_login_attempts = 3
+offline_failed_login_delay = 5
+
+[sudo]
+
+[autofs]
+
+[ssh]
+
+[pac]
+
