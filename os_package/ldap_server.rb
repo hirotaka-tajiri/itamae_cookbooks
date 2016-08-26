@@ -17,6 +17,10 @@ template "/etc/rsyslog.conf" do
     source "files/ldap-server/rsyslog.conf"
 end
 
+service "rsyslog" do
+   action :restart
+end
+
 execute "sudo.schama" do
     action  :run
     command "find /usr/share/doc/ -type f -name schema.OpenLDAP -print0 | xargs -0 -I% cp %  /etc/openldap/schema/sudo.schema"
