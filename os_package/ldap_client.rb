@@ -13,8 +13,8 @@ template "/etc/openldap/ldap.conf" do
     action :create
     owner  "root"
     group  "root"
+    mode   "644"
     source "files/ldap.conf.template"
-
 end
 
 execute "authconfig mkhomedir" do
