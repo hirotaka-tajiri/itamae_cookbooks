@@ -1,0 +1,38 @@
+dn: cn=config
+changetype: modify
+replace: olcServerID
+olcServerID: 2
+
+dn: cn=module{0},cn=config
+changetype: modify
+add: olcModuleLoad
+olcModuleLoad: syncprov
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+add: olcDbIndex
+olcDbIndex: entryCSN eq
+-
+add: olcDbIndex
+olcDbIndex: entryUUID eq
+-
+add: olcSyncRepl
+olcSyncRepl: rid=001 
+ provider=ldap://192.168.56.101 
+ bindmethod=simple 
+ binddn="cn=Manager,dc=test,dc=co,dc=jp" 
+ credentials=abcde12345 
+ searchbase="dc=test,dc=co,dc=jp" 
+ schemachecking=on 
+ type=refreshAndPersist 
+ interval=00:00:03:00 
+ retry="60 +" 
+-
+add: olcMirrorMode
+olcMirrorMode: TRUE
+
+dn: olcOverlay=syncprov,olcDatabase={2}hdb,cn=config
+changetype: add
+objectClass: olcOverlayConfig
+objectClass: olcSyncProvConfig
+olcOverlay: syncprov
