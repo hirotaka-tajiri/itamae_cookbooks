@@ -2,14 +2,14 @@
 [
     "syncprov-module.ldif",
     "syncprov.ldif",
-    "mirror1.ldif",
+    "#{node[:name]}.ldif",
 ].each {| tmp |
     template "/etc/openldap/ldif_files/#{tmp}" do
         action :create
         owner  "root"
         group  "root"
         mode   "644"
-        source "files/ldap-server/adm1/#{tmp}"
+        source "files/ldap-server/mirror/#{tmp}"
     end 
 }
 
@@ -25,7 +25,7 @@
 }
 
 # ldapmodify
-execute "mirror1" do
+execute "#{node[:name]}" do
     action  :run
-    command "/bin/ldapmodify -Y EXTERNAL -H ldapi:// -f /etc/openldap/ldif_files/mirror1.ldif"
+    command "/bin/ldapmodify -Y EXTERNAL -H ldapi:// -f /etc/openldap/ldif_files/#{node[:name]}.ldif"
 end
