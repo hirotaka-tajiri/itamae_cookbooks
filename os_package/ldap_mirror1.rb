@@ -13,7 +13,7 @@
     end 
 }
 
-# ldapmodify
+# ldapadd
 [
     "syncprov-module.ldif",
     "syncprov.ldif",
