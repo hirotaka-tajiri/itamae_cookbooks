@@ -23,6 +23,7 @@
         command "/bin/ldapadd -Y EXTERNAL -H ldapi:// -f /etc/openldap/ldif_files/#{file}"
     end
 }
+
 # ldapmodify
 execute "mirror2" do
     action  :run
