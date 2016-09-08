@@ -1,0 +1,5 @@
+[myrepo]
+name=my repository
+baseurl=http://centos7-admin/el7/
+enabled=1
+gpgcheck=0
