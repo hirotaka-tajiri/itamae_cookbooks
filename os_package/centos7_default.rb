@@ -2,7 +2,8 @@
   "bzip2", 
   "xz",
   "bind-utils",
-  "lsof"
+  "lsof",
+  "wget",
 ].each {| pkg |
     package pkg do
         action :install
