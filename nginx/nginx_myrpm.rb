@@ -5,7 +5,8 @@ end
 [
     "/var/www",
     "/var/www/ldap_auth",
-    "/etc/nginx/html/auth",
+    "/var/www/html",
+    "/var/www/html/auth",
 ].each {| dir |
     directory dir do
        action :create
@@ -42,10 +43,22 @@ end
     end
 }
 
+execute "cp Index.html" do
+    action  :run
+    command "cp -f /etc/nginx/html/index.html /var/www/html"
+    not_if  "test -e /var/www/html/index.html"
+end
+
+execute "cp 50x.html" do
+    action  :run
+    command "cp -f /etc/nginx/html/50x.html /var/www/html"
+    not_if  "test -e /var/www/html/50x.html"
+end
+
 execute "digest index" do
     action  :run
-    command "echo 'digest auth OK' > /etc/nginx/html/auth/index.html"
-    not_if  "test -e /etc/nginx/html/auth/index.html"
+    command "echo 'digest auth OK' > /var/www/html/auth/index.html"
+    not_if  "test -e /var/www/html/auth/index.html"
 end
 
 service "nginx" do
