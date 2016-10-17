@@ -4,12 +4,23 @@
   "bind-utils",
   "lsof",
   "wget",
+  "ntp",
 ].each {| pkg |
     package pkg do
         action :install
     end
 }
 
+template "/etc/ntp.conf" do
+    action :create
+    owner  "root"
+    group  "root"
+    source "files/ntp.conf"
+end
+
+service "ntpd" do
+    action [:enable, :start]
+end
 
 [
     "tuned.service",
@@ -27,4 +38,3 @@ template "/etc/logrotate.conf" do
     group  "root"
     source "files/logrotate.conf.template"
 end
-
