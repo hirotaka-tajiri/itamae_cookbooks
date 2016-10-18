@@ -1,10 +1,12 @@
 [
-  "bzip2", 
-  "xz",
-  "bind-utils",
-  "lsof",
-  "wget",
-  "ntp",
+    "bzip2", 
+    "xz",
+    "bind-utils",
+    "lsof",
+    "wget",
+    "ntp",
+    "postfix",
+    "mailx",
 ].each {| pkg |
     package pkg do
         action :install
