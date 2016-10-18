@@ -13,16 +13,27 @@
     end
 }
 
-template "/etc/ntp.conf" do
-    action :create
-    owner  "root"
-    group  "root"
-    source "files/ntp.conf"
-end
+[
+    ["/etc/ntp.conf",        "files/ntp.conf"               ],
+    ["/etc/postfix/main.cf", "files/main.cf"                ],
+    ["/etc/logrotate.conf",  "files/logrotate.conf.template"],
+].each{| file_ary |
+    template "#{file_ary[0]}" do
+        action :create
+        owner  "root"
+        group  "root"
+        source "#{file_ary[1]}"
+    end
+}
 
-service "ntpd" do
-    action [:enable, :start]
-end
+[
+    "ntpd",
+    "postfix",
+].each{| srv |
+    service srv do
+        action [:enable, :start]
+    end
+}
 
 [
     "tuned.service",
@@ -33,10 +44,3 @@ end
         action [:stop, :disable]
     end
 }
-
-template "/etc/logrotate.conf" do
-    action :create
-    owner  "root"
-    group  "root"
-    source "files/logrotate.conf.template"
-end
