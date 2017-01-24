@@ -1,1 +1,5 @@
-{"name" : "centos7-admin" }
+{
+    "name"     : "centos7-admin",
+    "timesync" : "ntp.nict.jp"
+ }
+
