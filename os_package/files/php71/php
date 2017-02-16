@@ -1,0 +1,9 @@
+/var/log/php/*.log {
+    missingok
+    compress
+    notifempty
+    weekly
+    rotate 5
+    create 0644 apache apache
+    su apache apache
+}
