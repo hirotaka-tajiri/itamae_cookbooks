@@ -16,7 +16,6 @@
     "php-cli",
     "php-common",
     "php-json",
-    "php-mysql",
     "php-mysqlnd",
     "php-opcache",
     "php-mbstring",
@@ -54,5 +53,5 @@ directory "/var/log/php" do
 end
 
 service "httpd" do
-    action [:enable, :start]
+    action [:stop, :enable, :start]
 end
