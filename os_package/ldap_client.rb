@@ -1,7 +1,6 @@
 [
     "openldap-clients",
     "sssd",
-    "nscd",
     "openssh-ldap",
 ].each {| pkg |
     package pkg do
@@ -61,6 +60,6 @@ end
     "sshd",
 ].each {| srv |
     service srv do
-        action :restart
+        action [:restart, :enable]
     end
 }
