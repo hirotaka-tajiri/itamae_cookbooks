@@ -8,6 +8,7 @@ p_key="/home/hiro/.ssh/id_ed25519_hiro"
 # itamae recipe
 list_repo=("epel.rb" "remi.rb")
 list_recipe=("centos7_default.rb" "centos7_chrony.rb" "selinux.rb" "ldap_client.rb" "sshd.rb" "php71.rb")
+list_recipe1=("php71.rb")
 
 
 # RVM
@@ -41,3 +42,12 @@ for str in ${list_recipe[@]}
 do
     itamae ssh -h ${target_host} -u ${run_user} -i ${p_key} ${str} ${DRY_RUN}
 done 
+
+###
+# apache(php)
+
+cd /root/itamae_cookbooks/php
+for str in ${list_recipe1[@]}
+do
+    itamae ssh -h ${target_host} -u ${run_user} -i ${p_key} ${str} ${DRY_RUN}
+done
