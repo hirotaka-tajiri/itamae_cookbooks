@@ -7,7 +7,7 @@ p_key="/home/hiro/.ssh/id_ed25519_hiro"
 
 # itamae recipe
 list_repo=("epel.rb" "remi.rb")
-list_recipe=("centos7_default.rb" "centos7_chrony.rb" "selinux.rb" "ldap_client.rb" "sshd.rb" "php71.rb")
+list_recipe=("centos7_default.rb" "centos7_chrony.rb" "selinux.rb" "ldap_client.rb" "sshd.rb")
 list_recipe1=("php71.rb")
 
 
