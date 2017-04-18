@@ -1,6 +1,7 @@
 [
     "bzip2", 
     "xz",
+    "rsync",
     "bind-utils",
     "lsof",
     "wget",

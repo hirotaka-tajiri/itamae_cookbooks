@@ -23,6 +23,7 @@
     package pkg do
         action :install
         options "--enablerepo=remi-php71"
+        version "7.1.3"
     end
 }
 
