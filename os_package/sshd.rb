@@ -1,13 +1,15 @@
-
 # recipe
 
 [
-    "sshd_config", 
-    "ssh_config"
-].each {| f |
-    template "/etc/ssh/#{f}" do
+    ["sshd_config", "0600"],
+    ["ssh_config",  "0644"],
+].each {| file_ary |
+    template "/etc/ssh/#{file_ary[0]}" do
         action :create
-        source "files/#{f}.template"
+        owner  "root"
+        group  "root"
+        source "files/#{file_ary[0]}.template"
+        mode   "#{file_ary[1]}"
     end
 }
 
