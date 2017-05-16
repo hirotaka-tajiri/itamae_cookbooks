@@ -1,5 +1,6 @@
 package "redis" do
     action :install
+    options "--enablerepo=epel,remi,remi-php71"
 end
 
 [
@@ -14,6 +15,6 @@ end
     end
 }
 
-#service "redis" do
-#    action [:enable, :restart]
-#end
+service "redis" do
+    action [:enable, :restart]
+end
