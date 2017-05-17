@@ -10,7 +10,6 @@ end
     "openssh-clients",
     "postfix",
     "gitlab-ce",
-    "MariaDB-devel",
     "openssl-devel",
     "keyutils-libs-devel",
     "krb5-devel",

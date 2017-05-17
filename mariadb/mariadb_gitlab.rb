@@ -4,6 +4,7 @@
     "MariaDB-compat",
     "MariaDB-server",
     "MariaDB-shared",
+    "MariaDB-devel",
 ].each {| pkg |
     package pkg do
         action :install
@@ -28,6 +29,7 @@
 execute "mariadb install db" do
     action  :run
     command "/bin/mysql_install_db --user=mysql --defaults-file=/etc/my.cnf"
+    not_if  "test -e /var/lib/mysql/mysql"
 end
 
 service "mariadb" do
@@ -37,4 +39,11 @@ end
 execute "CREATE DATABASE" do
     action  :run
     command "/bin/mysql -uroot < /tmp/mariadb_gitlab.sql"
+    not_if  "test -e /var/lib/mysql/gitlabhq_production"
+end
+
+execute "DEL sql file" do
+    action  :run
+    command "rm -f /tmp/mariadb_gitlab.sql"
+    only_if "test -e /tmp/mariadb_gitlab.sql"
 end

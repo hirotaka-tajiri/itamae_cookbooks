@@ -4,6 +4,7 @@
     "MariaDB-compat",
     "MariaDB-server",
     "MariaDB-shared",
+    "MariaDB-devel",
 ].each {| pkg |
     package pkg do
         action :install
@@ -14,7 +15,7 @@
     ["/etc/my.cnf.d/", "server.cnf"],
     ["/etc/my.cnf.d/", "mysql-clients.cnf"],
     ["/etc/my.cnf.d/", "client.cnf"],
-    ["/tmp/",          "mariadb_zabbix.sql"],
+    ["/tmp/",          "mariadb_gitbucket.sql"],
 ].each {| tmp |
     template "#{tmp[0]}#{tmp[1]}" do
         action :create
@@ -37,12 +38,12 @@ end
 
 execute "CREATE DATABASE" do
     action  :run
-    command "/bin/mysql -uroot < /tmp/mariadb_zabbix.sql"
-    not_if  "test -e /var/lib/mysql/zabbix"
+    command "/bin/mysql -uroot < /tmp/mariadb_gitbucket.sql"
+    not_if  "test -e /var/lib/mysql/gitbucket"
 end
 
 execute "DEL sql file" do
     action  :run
-    command "rm -f /tmp/mariadb_zabbix.sql"
-    only_if "test -e /tmp/mariadb_zabbix.sql"
+    command "rm -f /tmp/mariadb_gitbucket.sql"
+    only_if "test -e /tmp/mariadb_gitbucket.sql"
 end
