@@ -1,1 +1,4 @@
-{"name" : "centos7-zabbix" }
+{
+    "name" : "centos7-zabbix",
+    "timesync" : "192.168.56.101"
+}

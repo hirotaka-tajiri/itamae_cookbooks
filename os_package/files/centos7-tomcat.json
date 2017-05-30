@@ -1,1 +1,4 @@
-{"name" : "centos7-tomcat" }
+{
+    "name" : "centos7-tomcat",
+    "timesync" : "ntp.nict.jp"
+}
